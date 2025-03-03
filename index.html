@@ -1,1 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Developer Tools</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="js/app.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Free Developer Tools</h1>
+        <nav id="toolNav">
+            <button class="tool-btn active" data-tool="regex">RegEx Tester</button>
+            <button class="tool-btn" data-tool="base64">Base64 Converter</button>
+            <button class="tool-btn" data-tool="json">JSON Formatter</button>
+            <button class="tool-btn" data-tool="analyzer">Code Analyzer</button>
+            <button class="tool-btn" data-tool="security">Security Tools</button>
+        </nav>
+    </header>
 
+    <main>
+        <!-- RegEx Tool -->
+        <section id="regexTool" class="tool-section active">
+            <div class="tool-container">
+                <div class="input-section">
+                    <div class="input-group">
+                        <label for="pattern">Regular Expression:</label>
+                        <input type="text" id="pattern" placeholder="Enter pattern (without //)">
+                        <input type="text" id="flags" placeholder="Flags (e.g., gi)" maxlength="4">
+                    </div>
+                    <div class="input-group">
+                        <label for="inputText">Test Text:</label>
+                        <textarea id="inputText" placeholder="Enter text to test"></textarea>
+                    </div>
+                    <div class="pattern-grid">
+                        <h3>Common Patterns:</h3>
+                        <button data-pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}" data-flags="g">Email</button>
+                        <button data-pattern="\b\d{3}[-.]?\d{3}[-.]?\d{4}\b" data-flags="g">Phone (US)</button>
+                        <button data-pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">Password</button>
+                        <button data-pattern="https?:\/\/[^\s/$.?#].[^\s]*" data-flags="g">URL</button>
+                    </div>
+                    <div class="sample-grid">
+                        <h3>Sample Text:</h3>
+                        <button>test@example.com user@domain.co.uk</button>
+                        <button>123-456-7890 444.555.6666</button>
+                        <button>https://example.com http://test.co.uk</button>
+                    </div>
+                </div>
+                <div id="results" class="results"></div>
+            </div>
+            <div class="guide-section">
+                <h2>RegEx Quick Guide</h2>
+                <div class="guide-content">
+                    <h3>Basic Syntax:</h3>
+                    <ul>
+                        <li><code>.</code> - Any character except newline</li>
+                        <li><code>*</code> - 0 or more times</li>
+                        <li><code>+</code> - 1 or more times</li>
+                        <li><code>?</code> - 0 or 1 time</li>
+                        <li><code>\d</code> - Any digit</li>
+                        <li><code>\w</code> - Word character [A-Za-z0-9_]</li>
+                        <li><code>\s</code> - Whitespace</li>
+                    </ul>
+                    <h3>Flags:</h3>
+                    <ul>
+                        <li><code>g</code> - Global (find all matches)</li>
+                        <li><code>i</code> - Case insensitive</li>
+                        <li><code>m</code> - Multiline</li>
+                    </ul>
+                    <h3>Examples:</h3>
+                    <ul>
+                        <li><code>\b\w+@\w+\.\w+\b</code> - Simple email</li>
+                        <li><code>\d{3}-\d{3}-\d{4}</code> - Phone number</li>
+                        <li><code>[A-Z][a-z]+</code> - Capitalized word</li>
+                    </ul>
+                    <h3>Tips:</h3>
+                    <ul>
+                        <li>Test your pattern incrementally</li>
+                        <li>Use the sample patterns as learning examples</li>
+                        <li>Hover over matches to see group details</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Base64 Tool -->
+        <section id="base64Tool" class="tool-section">
+            <div class="tool-container">
+                <div class="input-section">
+                    <div class="input-group">
+                        <label for="base64Input">Input:</label>
+                        <textarea id="base64Input" placeholder="Enter text to encode/decode"></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button id="encodeBase64">Encode to Base64</button>
+                        <button id="decodeBase64">Decode from Base64</button>
+                        <button id="clearBase64">Clear</button>
+                    </div>
+                    <div class="sample-grid">
+                        <h3>Sample Text:</h3>
+                        <button data-text="Hello, World!">Simple Text</button>
+                        <button data-text="https://example.com/image.jpg">URL</button>
+                        <button data-text="SGVsbG8sIFdvcmxkIQ==">Encoded Text</button>
+                        <button data-text="user:password">Auth String</button>
+                    </div>
+                    <div id="base64Result" class="results"></div>
+                </div>
+            </div>
+            <div class="guide-section">
+                <h2>Base64 Guide</h2>
+                <div class="guide-content">
+                    <h3>What is Base64?</h3>
+                    <p>Base64 is an encoding scheme that converts binary data into ASCII text format. It uses 64 characters (A-Z, a-z, 0-9, +, /) and = for padding.</p>
+                    
+                    <h3>Common Uses:</h3>
+                    <ul>
+                        <li>Encoding binary data in emails</li>
+                        <li>Data URLs in HTML/CSS</li>
+                        <li>Basic authentication headers</li>
+                        <li>Storing binary data in JSON</li>
+                    </ul>
+
+                    <h3>Examples:</h3>
+                    <ul>
+                        <li><code>Hello</code> → <code>SGVsbG8=</code></li>
+                        <li><code>user:pass</code> → <code>dXNlcjpwYXNz</code></li>
+                        <li>Image URL → <code>data:image/jpeg;base64,...</code></li>
+                    </ul>
+
+                    <h3>Tips:</h3>
+                    <ul>
+                        <li>Base64 text is ~33% larger than the original</li>
+                        <li>= padding at the end is normal</li>
+                        <li>Not for encryption - it's encoding only</li>
+                        <li>Common in web APIs and data transfer</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code Analyzer Tool -->
+        <section id="analyzerTool" class="tool-section">
+            <div class="tool-container">
+                <div class="input-section">
+                    <div class="input-group">
+                        <label for="languageSelect">Language:</label>
+                        <select id="languageSelect">
+                            <option value="javascript">JavaScript</option>
+                            <option value="python">Python</option>
+                            <option value="java">Java</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="codeInput">Code to Analyze:</label>
+                        <textarea id="codeInput" placeholder="Paste your code here..." rows="15"></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button id="analyzeCode">Analyze Code</button>
+                        <button id="clearAnalyzer">Clear</button>
+                    </div>
+                    <div class="sample-grid">
+                        <h3>Sample Code:</h3>
+                        <button data-language="javascript" data-code="function calculateTotal(items) {
+    let total = 0;
+    // Calculate sum
+    for (let i = 0; i < items.length; i++) {
+        if (items[i].type === 'regular') {
+            total += items[i].price;
+        } else if (items[i].type === 'discount') {
+            total += items[i].price * 0.9;
+        } else {
+            total += items[i].price * 1.1;
+        }
+    }
+    return total;
+}">Complex Function</button>
+                        <button data-language="javascript" data-code="class DataProcessor {
+    constructor(data) {
+        this.data = data;
+    }
+
+    process() {
+        return this.data
+            .filter(item => item.value > 0)
+            .map(item => item.value * 2)
+            .reduce((a, b) => a + b, 0);
+    }
+}">Clean Class</button>
+                    </div>
+                    <div id="analyzerResult" class="results"></div>
+                </div>
+            </div>
+            <div class="guide-section">
+                <h2>Code Analysis Guide</h2>
+                <div class="guide-content">
+                    <h3>What We Analyze:</h3>
+                    <ul>
+                        <li>Cyclomatic Complexity</li>
+                        <li>Code Structure</li>
+                        <li>Function Metrics</li>
+                        <li>Code Style</li>
+                    </ul>
+
+                    <h3>Metrics Explained:</h3>
+                    <ul>
+                        <li><code>Cyclomatic Complexity</code> - Measures code paths</li>
+                        <li><code>Nesting Depth</code> - Levels of nested blocks</li>
+                        <li><code>Function Length</code> - Lines per function</li>
+                        <li><code>Comment Ratio</code> - Documentation coverage</li>
+                    </ul>
+
+                    <h3>Best Practices:</h3>
+                    <ul>
+                        <li>Keep functions small and focused</li>
+                        <li>Avoid deep nesting</li>
+                        <li>Comment complex logic</li>
+                        <li>Break down complex conditions</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Tools -->
+        <section id="securityTool" class="tool-section">
+            <div class="tool-container">
+                <div class="input-section">
+                    <div class="input-group">
+                        <label for="securityMode">Tool:</label>
+                        <select id="securityMode">
+                            <option value="jwt">JWT Decoder</option>
+                            <option value="password">Password Analyzer</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="securityInput">Input:</label>
+                        <textarea id="securityInput" placeholder="Enter JWT token or password to analyze..." rows="3"></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button id="analyzeToken">Decode JWT</button>
+                        <button id="checkPassword">Check Password</button>
+                        <button id="clearSecurity">Clear</button>
+                    </div>
+                    <div class="sample-grid">
+                        <h3>Sample Data:</h3>
+                        <button data-mode="jwt" data-sample="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c">Sample JWT</button>
+                        <button data-mode="password" data-sample="MyStr0ng#P@ss">Sample Password</button>
+                    </div>
+                    <div id="securityResult" class="results"></div>
+                </div>
+            </div>
+            <div class="guide-section">
+                <h2>Security Tools Guide</h2>
+                <div class="guide-content">
+                    <h3>JWT Decoder:</h3>
+                    <ul>
+                        <li>Decodes JWT tokens</li>
+                        <li>Validates format</li>
+                        <li>Shows expiration status</li>
+                        <li>Displays claims</li>
+                    </ul>
+
+                    <h3>Password Analyzer:</h3>
+                    <ul>
+                        <li>Checks strength</li>
+                        <li>Counts character types</li>
+                        <li>Suggests improvements</li>
+                        <li>Shows security score</li>
+                    </ul>
+
+                    <h3>Best Practices:</h3>
+                    <ul>
+                        <li>Use strong passwords (12+ chars)</li>
+                        <li>Mix character types</li>
+                        <li>Check token expiration</li>
+                        <li>Validate JWT signatures</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- JSON Tool -->
+        <section id="jsonTool" class="tool-section">
+            <div class="tool-container">
+                <div class="input-section">
+                    <div class="input-group">
+                        <label for="jsonInput">JSON Input:</label>
+                        <textarea id="jsonInput" placeholder="Enter JSON to format/validate"></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button id="formatJson">Format & Validate</button>
+                        <button id="minifyJson">Minify</button>
+                        <button id="clearJson">Clear</button>
+                    </div>
+                    <div class="sample-grid">
+                        <h3>Sample JSON:</h3>
+                        <button data-json='{"name": "John", "age": 30, "city": "New York"}'>Simple Object</button>
+                        <button data-json='[{"id": 1, "task": "Shopping"}, {"id": 2, "task": "Coding"}]'>Array of Objects</button>
+                        <button data-json='{"user": {"name": "Alice", "settings": {"theme": "dark", "notifications": true}}}'>Nested Object</button>
+                    </div>
+                    <div id="jsonResult" class="results"></div>
+                </div>
+            </div>
+            <div class="guide-section">
+                <h2>JSON Guide</h2>
+                <div class="guide-content">
+                    <h3>What is JSON?</h3>
+                    <p>JSON (JavaScript Object Notation) is a lightweight data format that's easy for humans to read/write and easy for machines to parse/generate.</p>
+
+                    <h3>Basic Types:</h3>
+                    <ul>
+                        <li><code>{ }</code> - Objects (key-value pairs)</li>
+                        <li><code>[ ]</code> - Arrays</li>
+                        <li><code>"text"</code> - Strings (double quotes required)</li>
+                        <li><code>123, 12.34</code> - Numbers</li>
+                        <li><code>true, false</code> - Booleans</li>
+                        <li><code>null</code> - Null value</li>
+                    </ul>
+
+                    <h3>Common Patterns:</h3>
+                    <ul>
+                        <li>Object: <code>{"key": "value"}</code></li>
+                        <li>Array: <code>["item1", "item2"]</code></li>
+                        <li>Nested: <code>{"user": {"name": "John"}}</code></li>
+                    </ul>
+
+                    <h3>Tips:</h3>
+                    <ul>
+                        <li>Keys must be in double quotes</li>
+                        <li>No trailing commas allowed</li>
+                        <li>No comments in JSON</li>
+                        <li>Use Format to find errors easily</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
