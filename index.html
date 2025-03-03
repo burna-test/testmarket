@@ -16,6 +16,7 @@
             <button class="tool-btn" data-tool="json">JSON Formatter</button>
             <button class="tool-btn" data-tool="analyzer">Code Analyzer</button>
             <button class="tool-btn" data-tool="security">Security Tools</button>
+            <button class="tool-btn" data-tool="builder">Component Builder</button>
         </nav>
     </header>
 
@@ -274,6 +275,63 @@
                         <li>Mix character types</li>
                         <li>Check token expiration</li>
                         <li>Validate JWT signatures</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Component Builder -->
+        <section id="builderTool" class="tool-section">
+            <div class="tool-container builder-container">
+                <div id="componentsPanel" class="components-panel">
+                    <h2>Components</h2>
+                    <!-- Components will be dynamically added here -->
+                </div>
+                <div class="builder-workspace">
+                    <div class="workspace-controls">
+                        <select id="exportType">
+                            <option value="html">HTML/CSS</option>
+                            <option value="react">React</option>
+                        </select>
+                    </div>
+                    <div id="previewArea" class="preview-area">
+                        <div class="preview-placeholder">
+                            Drag components here to build your page
+                        </div>
+                    </div>
+                    <div class="code-output-container">
+                        <h3>Generated Code</h3>
+                        <textarea id="codeOutput" readonly></textarea>
+                        <button id="copyCode" class="copy-btn">Copy Code</button>
+                    </div>
+                </div>
+            </div>
+            <div class="guide-section">
+                <h2>Component Builder Guide</h2>
+                <div class="guide-content">
+                    <h3>Getting Started:</h3>
+                    <ul>
+                        <li>Browse available components in the left panel</li>
+                        <li>Drag components to the preview area</li>
+                        <li>Arrange components in your desired order</li>
+                        <li>Choose export format (HTML/CSS or React)</li>
+                        <li>Copy the generated code</li>
+                    </ul>
+
+                    <h3>Available Components:</h3>
+                    <ul>
+                        <li>Navigation Bars</li>
+                        <li>Hero Sections</li>
+                        <li>Feature Grids</li>
+                        <li>Footers</li>
+                    </ul>
+
+                    <h3>Tips:</h3>
+                    <ul>
+                        <li>Components are fully responsive</li>
+                        <li>Customize the code after export</li>
+                        <li>Remove components with the × button</li>
+                        <li>Preview updates in real-time</li>
                     </ul>
                 </div>
             </div>

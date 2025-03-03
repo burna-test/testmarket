@@ -3,6 +3,7 @@ import { Base64Tool } from './base64-tool.js';
 import { JsonTool } from './json-tool.js';
 import { CodeAnalyzerTool } from './code-analyzer-tool.js';
 import { SecurityTool } from './security-tool.js';
+import { ComponentBuilder } from './component-builder.js';
 
 class App {
     constructor() {
@@ -42,4 +43,5 @@ class App {
 document.addEventListener('DOMContentLoaded', () => {
     const app = new App();
     const securityTool = new SecurityTool();
+    const componentBuilder = new ComponentBuilder();
 });
